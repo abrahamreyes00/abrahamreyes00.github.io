@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<!--UATSpace page
+written by Abraham Reyes
+abrreyes@uat.edu
+29May2021-->
+
+<html>
+
+<head>
+    <!--Creates a link to the background color CSS file-->
+    <link href="Style.css" rel="stylesheet" type="text/css" />
+    <script src="JavascriptHolder.js"></script>
+    <script src="dataLoader-1.js"></script>
+    <title>
+        Abraham Reyes UATSpace Page
+    </title>
+</head>
+<!--Adds a body to the website-->
+
+<body>
+    <!--needed for the DOM-->
+    <script>
+        //create some needed variables
+        var theTime = new Date();
+        var tempTime = new Date();
+        var time_interval = 5000;
+        var last_iteration = 0;
+        var running = true;
+        var index = 0;
+        var timer;
+
+        //to get data for our table
+        var data = getData();
+
+        //data from dataloader() to our table
+        function updateDisplay() {
+            theTime = new Date();
+            //fill in the table
+            var timeRead = data[index].time_seconds;
+            if (timeRead >= 10) {
+                document.getElementById("data").rows["seconds"].innerHTML = dataRow("Time Elapsed", data[index].time_seconds, "seconds");
+                document.getElementById("data").rows["latitude"].innerHTML = dataRow("Latitude", data[index].latitude, " ");
+                document.getElementById("data").rows["longitude"].innerHTML = dataRow("Longitude", data[index].longitude, " ");
+                document.getElementById("data").rows["gps_altitude"].innerHTML = dataRow("GPS altitude", data[index].gps_altitude, " ");
+                document.getElementById("data").rows["bmp_sensor_altitude"].innerHTML = dataRow("bmp sensor altitude", data[index].bmpSensor_altitude, " ");
+                document.getElementById("data").rows["bmp_sensor_pressure"].innerHTML = dataRow("bmp sensor pressure", data[index].bmpSensor_pressure, " ");
+                document.getElementById("data").rows["bmp_sensor_temperature"].innerHTML = dataRow("bmp sensor temperature", data[index].bmpSensor_temp, " ");
+                document.getElementById("data").rows["digital_sensor_temperature"].innerHTML = dataRow("digital sensor temperature", data[index].digSensor_temp, " ");
+                document.getElementById("data").rows["css_sensor_temperature"].innerHTML = dataRow("css sensor temperature", data[index].cssSensor_temp, " ");
+                document.getElementById("data").rows["css_sensor_eco2"].innerHTML = dataRow("css sensor eco2", data[index].cssSensor_eCO2, " ");
+                document.getElementById("data").rows["css_sensor_tvoc"].innerHTML = dataRow("css sensor tvoc", data[index].cssSensor_TVOC, " ");
+                document.getElementById("data").rows["uv"].innerHTML = dataRow("uv", data[index].UV, " ");
+                document.getElementById("data").rows["accel_x"].innerHTML = dataRow("accel x", data[index].accelX, " ");
+                document.getElementById("data").rows["accel_y"].innerHTML = dataRow("accel y", data[index].accelY, " ");
+                document.getElementById("data").rows["accel_z"].innerHTML = dataRow("accel z", data[index].accelZ, " ");
+                document.getElementById("data").rows["magnetic_x"].innerHTML = dataRow("magnetic x", data[index].magneticX, " ");
+                document.getElementById("data").rows["magnetic_y"].innerHTML = dataRow("magnetic y", data[index].magneticY, " ");
+                document.getElementById("data").rows["magnetic_z"].innerHTML = dataRow("magnetic z", data[index].magneticZ, " ");
+                document.getElementById("data").rows["gyro_x"].innerHTML = dataRow("gyro x", data[index].gyroX, " ");
+                document.getElementById("data").rows["gyro_y"].innerHTML = dataRow("gyro y", data[index].gyroY, " ");
+                document.getElementById("data").rows["gyro_z"].innerHTML = dataRow("gyro z", data[index].gyroZ, " ");
+            }
+            if (index < 500) {
+                index++
+            } else {
+                index = 0
+            }
+
+
+
+        }
+
+    </script>
+
+
+
+    <!--img src adds an image to the website-->
+    <!--Making a table to hold h1 title and jpg-->
+    <table>
+        <td><img src="UATspaceLogo-2.jpg"></td>
+        <td>
+            <!--h1 is header one and puts in the first header on the website-->
+            <h1>
+                UAT Space Program
+            </h1>
+        </td>
+    </table>
+    <table border="4" width="70%" id="data">
+        <col style="width: 35%;">
+        <col style="width: 35%;">
+        <thead>
+            <tr style="font-family: fantasy;">
+                <th>Data Type</th>
+                <th>Reading</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="seconds">
+            </tr>
+            <tr id="latitude">
+            </tr>
+            <tr id="longitude">
+            </tr>
+            <tr id="gps_altitude">
+            </tr>
+            <tr id="bmp_sensor_altitude">
+            </tr>
+            <tr id="bmp_sensor_pressure">
+            </tr>
+            <tr id="bmp_sensor_temperature">
+            </tr>
+            <tr id="digital_sensor_temperature">
+            </tr>
+            <tr id="css_sensor_temperature">
+            </tr>
+            <tr id="css_sensor_eco2">
+            </tr>
+            <tr id="css_sensor_tvoc">
+            </tr>
+            <tr id="uv">
+            </tr>
+            <tr id="accel_x">
+            </tr>
+            <tr id="accel_y">
+            </tr>
+            <tr id="accel_z">
+            </tr>
+            <tr id="magnetic_x">
+            </tr>
+            <tr id="magnetic_y">
+            </tr>
+            <tr id="magnetic_z">
+            </tr>
+            <tr id="gyro_x">
+            </tr>
+            <tr id="gyro_y">
+            </tr>
+            <tr id="gyro_z">
+            </tr>
+
+        </tbody>
+    </table>
+
+
+    <script>
+        //javascript stuff happens between the <script> tags
+        //document.write("Test of the document.write function");
+
+    </script>
+    <!--p adds a paragraph tag to the website-->
+    <!--//<p>Test of the paragraph tags</p><br>-->
+    <!--br creates a break in the lines to be represented on the website-->
+    <br>
+    <p id="countdownTimer">Countdown Status...</p>
+    <!--button inserts a clickable button to the web page-->
+    <button class="button" id="startButton" onclick="start();">Start</button>
+    <button class="button" id="stopButton" onclick="stop();">Stop</button>
+    
+    <br>
+    <br>
+    <button class="button" onclick="playstation();">Play Sound</button>
+    <br>
+    <!--Tests the alert function to display when going to website -->
+    <script>
+        //We do not need the alert anymore.
+        //alert("Test of the Alert function");
+    </script>
+    <br>
+    <br>
+    <br>
+    <button class="button" onclick="IndexTrans();">Go to Index</button>
+    <button class="button" onclick="ObjectivesTrans();">Objectives</button>
+
+
+
+</body>
+
+</html>

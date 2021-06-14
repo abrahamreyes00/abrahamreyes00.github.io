@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--Login Page for the UAT Space page
+Created by: Abraham Reyes
+Intro to Programming
+20210529@1244-->
+<html>
+
+<head>
+    <!-- Links the Style css to the login page to have a better appearance.
+    Links the login javascript code to the page for input validation.-->
+    <link href="Style.css" rel="stylesheet" type="text/css" />
+    <script src="loginJSCode.js"></script>
+    <title>
+        UAT Space Login Page
+    </title>
+</head>
+
+<body>
+    <h1>
+        Welcome to the UAT Space login page. Please enter your credentials.
+    </h1>
+    <p id="loginStatus">
+        Status of login...
+    </p>
+    <!-- Creates the input blocks to type name and badge number, references the Login JS for rules defining entry into the 
+    UAT Space page-->
+    <form id="creditSubmit" onsubmit="return false">
+        First Name: <input class="input" type="text" id="fName" /><br>
+        Last Name: <input class="input" type="text" id="lName" /><br>
+        Badge Number: <input class="input" type="number" id="badgeID" /><br>
+        <input class="input" type="submit" onclick="checkCreds();" />
+    </form>
+</body>
+
+</html>
